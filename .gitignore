@@ -1,0 +1,35 @@
+## Django
+media/*
+static/temp/*
+__pycache__/
+*.pyc
+
+## Maps
+#/static/**/*.map
+
+## Environments
+env.toml
+.env
+venv*
+.python-version
+
+## IDEs
+.idea/
+.vscode/
+.ropeproject/
+
+## MyPy
+.mypy_cache/
+
+## NPM
+node_modules/
+
+## Docker
+docker
+
+## Other
+sandbox/
+*.json
+
+## Logs
+logs/

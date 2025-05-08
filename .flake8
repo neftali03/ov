@@ -1,0 +1,11 @@
+[flake8]
+max-line-length = 88
+max-doc-length = 72
+extend-ignore =
+    E203
+    D100
+    D104
+per-file-ignores =
+    manage.py:INP001
+    apps/**/migrations/*:E501,D100,D101
+    __init__.py:F401

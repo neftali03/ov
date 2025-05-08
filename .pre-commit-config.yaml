@@ -1,0 +1,141 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+default_language_version:
+  python: python3.8.20
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: >
+          (?x)^(
+              static/.*\.min\.(js|css)$|
+              static/.*/bootstrap/.*|
+              static/.*/htmx/.*
+          )$
+      - id: end-of-file-fixer
+        exclude: >
+          (?x)^(
+              static/.*\.min\.(js|css)$|
+              static/.*/bootstrap/.*|
+              static/.*/htmx/.*
+          )$
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-added-large-files
+        args: [ '--maxkb=900' ]
+        exclude: >
+          (?x)^(
+            static/.*\.map$|
+            static/.*\.min\.(js|css)$|
+            static/.*/bootstrap/.*|
+            static/.*/htmx/.*|
+            static/fonts/.*\.ttf$
+          )$
+      - id: check-merge-conflict
+      - id: check-docstring-first
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.9.0
+    hooks:
+      - id: pyupgrade
+        args:
+          - --py38-plus
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort (python)
+        args:
+          - --profile
+          - black
+        language_version: python3.8
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.2
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-bugbear==24.12.12
+          - flake8-comprehensions==3.15.0
+          - flake8-docstrings==1.7.0
+          - flake8-print==5.0.0
+          - flake8-breakpoint==1.1.0
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.14.1
+    hooks:
+      - id: mypy
+        args:
+          - --config-file=mypy.ini
+        additional_dependencies:
+          - django-stubs==4.2.7
+          - djangorestframework-stubs==3.14.5
+          - celery
+          - django-celery-beat
+          - django-celery-results
+          - django-debug-toolbar
+          - django-import-export
+          - django-linear-migrations
+          - django-phonenumber-field
+          - django-widget-tweaks
+          - django_htmx
+          - djangorestframework
+          - drf-spectacular
+          - drf-spectacular-sidecar
+          - num2words
+          - pandas
+          - phonenumberslite
+          - psycopg2-binary
+          - pycountry
+          - python-dotenv
+          - qrcode
+          - unidecode
+          - xhtml2pdf
+          - django-import-export
+          - pydantic
+  - repo: https://github.com/rtts/djhtml
+    rev: 3.0.7
+    hooks:
+      - id: djhtml
+        args:
+          - --tabwidth=2
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.22.0
+    hooks:
+      - id: eslint
+        files: ^static/
+        types: [ javascript, ts ]
+        exclude: >
+          (?x)^(
+              static/.*\.min\.(js|css)$|
+              static/.*/bootstrap/.*|
+              static/.*/htmx/.*|
+              static/src/.*
+          )$
+        args:
+          - --fix
+        additional_dependencies:
+          - eslint@8.38.0
+          - eslint-config-airbnb-base@15.0.0
+          - eslint-config-prettier@8.8.0
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+  - repo: local
+    hooks:
+      - id: check-novalidate
+        name: Check for <form novalidate>
+        description: Check for the HTML form attribute `novalidate`.
+        language: pygrep
+        entry: novalidate
+        types: [ html ]
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-use-type-annotations
+      - id: python-check-blanket-noqa
+      #- id: python-check-blanket-type-ignore
