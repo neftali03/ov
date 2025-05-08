@@ -1,13 +1,13 @@
 version: '3.8'
 services:
   db-minerva:
-    container_name: postgres-minerva
+    container_name: postgres-ov
     image: postgres:16.2
     restart: on-failure
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: minerva
+      POSTGRES_DB: ov
     volumes:
       - ./docker/postgres/ov_data:/var/lib/postgresql/data
       - ./sql/docker:/scripts

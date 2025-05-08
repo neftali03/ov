@@ -12,21 +12,28 @@ with open(BASE_DIR / "env.toml", mode="rb") as env_file:
     env = tomli.load(env_file)
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+# ----------------------------------------------------------------------
+# 1. DJANGO CORE SETTINGS
+# ----------------------------------------------------------------------
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-@wm$^v#m8w2&f7)8_@oi7+freb07q&m+t1z#(-+4n^1y*!!2u2"
+# DEBUGGING
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env["core"]["debug"]
+
+# CORE
 
 ALLOWED_HOSTS = env["core"]["allowed_hosts"]
 
+ADMINS = [("neftali", "neftalihrramos03@gmail.com")]
 
-# Application definition
+# SECURITY
+
+SECRET_KEY = env["core"]["secret_key"]
+
+# MODELS
 
 INSTALLED_APPS = [
+    # "apps.core",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,17 +42,28 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 ]
 
+# HTTP
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    # "common.middleware.LoginRequiredMiddleware",
+    # "django_htmx.middleware.HtmxMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    # "common.middleware.TempPasswordMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+WSGI_APPLICATION = "config.wsgi.application"
+
+# URLs
+
 ROOT_URLCONF = "config.urls"
+
+# TEMPLATES
 
 TEMPLATES = [
     {
@@ -58,27 +76,68 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.i18n",
+                # "common.context_processors.sidebar",
+                # "common.context_processors.custom_data",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# DATABASES
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env["database"]["name"],
+        "USER": env["database"]["user"],
+        "PASSWORD": env["database"]["password"],
+        "HOST": env["database"]["host"],
+        "PORT": env["database"]["port"],
     }
 }
 
+# INTERNATIONALIZATION
 
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+LANGUAGE_CODE = "en-us"
+
+LANGUAGES = [
+    ("en-us", "English"),
+    ("es", "Spanish"),
+]
+
+USE_I18N = True
+
+USE_THOUSAND_SEPARATOR = True
+
+TIME_ZONE = "America/El_Salvador"
+
+USE_TZ = True
+
+# FILE UPLOADS
+
+MEDIA_URL = "media/"
+
+MEDIA_ROOT = env["storage"]["media_root"]
+MEDIA_LOCAL = "local"
+MEDIA_TMP = "tmp"
+
+# LOGGING
+
+if logging_root := env["logging"]["logging_root"]:
+    LOGGING_ROOT = Path(env["logging"]["logging_root"])
+else:
+    LOGGING_ROOT = BASE_DIR / "logs"
+
+# OTHERS
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ----------------------------------------------------------------------
+# 2. DJANGO CONTRIB SETTINGS
+# ----------------------------------------------------------------------
+
+# AUTH
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": f"django.contrib.auth.password_validation.{validator}"}
@@ -90,25 +149,37 @@ AUTH_PASSWORD_VALIDATORS = [
     )
 ]
 
+# AUTH_USER_MODEL = "core.User"
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
+LOGIN_URL = "/auth/login/"
 
-LANGUAGE_CODE = "en-us"
+LOGIN_REDIRECT_URL = "/"
 
-TIME_ZONE = "UTC"
+LOGOUT_REDIRECT_URL = LOGIN_URL
 
-USE_I18N = True
+# STATIC FILES
 
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATIC_URL = "static/"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+STATIC_ROOT = env["storage"]["static_root"] or None
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# ----------------------------------------------------------------------
+# 3. THIRD PARTY APPS SETTINGS
+# ----------------------------------------------------------------------
+
+# DJANGO DEBUG TOOLBAR
+
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+
+    import mimetypes
+
+    mimetypes.add_type("application/javascript", ".js", True)
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "ROOT_TAG_EXTRA_ATTRS": "hx-preserve",
+        "INTERCEPT_REDIRECTS": False,
+    }

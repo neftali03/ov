@@ -19,3 +19,4 @@ snowballstemmer==3.0.0.1
 sqlparse==0.5.3
 tomli==2.2.1
 typing_extensions==4.13.2
+django-debug-toolbar==4.4.6
