@@ -33,3 +33,9 @@ sandbox/
 
 ## Logs
 logs/
+
+## Token
+token.txt
+
+## DB SQL
+db.sqlite3

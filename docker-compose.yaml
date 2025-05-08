@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  db-minerva:
+    container_name: postgres-minerva
+    image: postgres:16.2
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: minerva
+    volumes:
+      - ./docker/postgres/ov_data:/var/lib/postgresql/data
+      - ./sql/docker:/scripts
+    ports:
+      - "127.0.0.1:5436:5432"
+    command:
+      - "postgres"
+      - "-c"
+      - "timezone=America/El_Salvador"

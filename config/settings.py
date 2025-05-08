@@ -45,7 +45,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "ov.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -63,7 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "ov.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
