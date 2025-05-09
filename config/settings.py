@@ -26,6 +26,11 @@ ALLOWED_HOSTS = env["core"]["allowed_hosts"]
 
 ADMINS = [("neftali", "neftalihrramos03@gmail.com")]
 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_COOKIE_AGE = 60 * 60 * 24
+
+USE_X_FORWARDED_HOST = True
+
 # SECURITY
 
 SECRET_KEY = env["core"]["secret_key"]
@@ -33,13 +38,23 @@ SECRET_KEY = env["core"]["secret_key"]
 # MODELS
 
 INSTALLED_APPS = [
-    # "apps.core",
+    "apps.core",
+    "widget_tweaks",
+    "django_htmx",
+    "django_linear_migrations",
+    "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+    "rest_framework.authtoken",
+    "import_export",
+    "django.forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
 ]
 
 # HTTP
@@ -50,10 +65,11 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    # "common.middleware.LoginRequiredMiddleware",
-    # "django_htmx.middleware.HtmxMiddleware",
+    "common.middleware.LoginRequiredMiddleware",
+    "common.dx_django_base.log_request.LogRequestMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    # "common.middleware.TempPasswordMiddleware",
+    "common.middleware.TempPasswordMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -83,6 +99,8 @@ TEMPLATES = [
         },
     },
 ]
+
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # DATABASES
 
@@ -149,7 +167,7 @@ AUTH_PASSWORD_VALIDATORS = [
     )
 ]
 
-# AUTH_USER_MODEL = "core.User"
+AUTH_USER_MODEL = "core.User"
 
 LOGIN_URL = "/auth/login/"
 
@@ -183,3 +201,14 @@ if DEBUG:
         "ROOT_TAG_EXTRA_ATTRS": "hx-preserve",
         "INTERCEPT_REDIRECTS": False,
     }
+
+
+# ----------------------------------------------------------------------
+# 4. PROJECT SETTINGS
+# ----------------------------------------------------------------------
+
+BOT_USERNAME = "ov"
+
+ALLOWED_USER_EMAIL_DOMAINS = ["gmail.com", "hotmail.com"]
+
+PASSWORD_HISTORY = 5

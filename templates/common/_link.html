@@ -1,0 +1,5 @@
+{% load tags %}
+<a href="{{ link_url }}{% if link_query_string %}?{{ link_query_string }}{% endif %}"
+   class="btn btn-{{ link_size }} btn-{{ link_style }} ms-1{{ link_classes }}"{{ link_attrs|safe }}>
+  {% if link_icon %}<span class="me-2">{% icon link_icon %}</span>{% endif %}{{ link_label }}
+</a>
