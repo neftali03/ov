@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Optional
 
 from django import template
 
@@ -12,7 +12,7 @@ def _button(
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
     type_: str = "button",
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Return the data to render a button."""
     return {
         "btn_label": label,
@@ -32,7 +32,7 @@ def button(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard button."""
     return _button(label, style, size, classes, attrs)
 
@@ -43,7 +43,7 @@ def button_cancel(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard cancel button."""
     return _button("Cancelar", "secondary", size, classes, attrs)
 
@@ -54,7 +54,7 @@ def button_delete(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard delete button."""
     return _button("Eliminar", "danger", size, classes, attrs)
 
@@ -67,7 +67,7 @@ def submit(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit button."""
     return _button(label, style, size, classes, attrs, "submit")
 
@@ -78,7 +78,7 @@ def submit_create(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit create button."""
     return _button("Crear", "success", size, classes, attrs, "submit")
 
@@ -89,7 +89,7 @@ def submit_add(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit create button."""
     return _button("Agregar", "success", size, classes, attrs, "submit")
 
@@ -100,7 +100,7 @@ def submit_edit(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit edit button."""
     return _button("Actualizar", "warning", size, classes, attrs, "submit")
 
@@ -111,7 +111,7 @@ def submit_delete(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit delete button."""
     return _button("Eliminar", "danger", size, classes, attrs, "submit")
 
@@ -122,7 +122,7 @@ def submit_start(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit start button."""
     return _button("Iniciar", "primary", size, classes, attrs, "submit")
 
@@ -133,7 +133,7 @@ def submit_cancel(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit cancel button."""
     return _button("Anular", "secondary", size, classes, attrs, "submit")
 
@@ -144,6 +144,6 @@ def submit_close(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard submit close button."""
     return _button("Cerrar", "dark", size, classes, attrs, "submit")

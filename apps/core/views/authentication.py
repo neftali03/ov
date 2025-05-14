@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout
-from django.contrib.auth.forms import AuthenticationForm as _AuthAuthenticationForm
+from django.contrib.auth.forms import \
+    AuthenticationForm as _AuthAuthenticationForm
 from django.contrib.auth.forms import UsernameField
 from django.contrib.auth.views import LoginView as _LoginView
 from django.contrib.auth.views import LogoutView as _LogoutView

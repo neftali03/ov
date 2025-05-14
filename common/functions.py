@@ -3,7 +3,7 @@ import secrets
 import string
 from datetime import date, timedelta
 from decimal import ROUND_DOWN, Decimal, getcontext
-from typing import Any, List, Literal, Tuple, Union
+from typing import Any, Literal, Union
 
 import pandas as pd
 import unidecode
@@ -122,7 +122,7 @@ def yearly_offsets(
     end: date,
     years: int,
     shift_weekday=False,
-) -> List[Tuple[date, date]]:
+) -> list[tuple[date, date]]:
     """Return the given interval offset by 52-weeks years."""
     intervals = []
     for year in range(years + 1):

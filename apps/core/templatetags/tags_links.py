@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from django import template
 
@@ -17,7 +17,7 @@ def _link(
     attrs: Optional[str] = None,
     icon: Optional[str] = None,
     query_string: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """
     Return the data to render a button link.
 
@@ -47,8 +47,8 @@ def link(
     attrs: Optional[str] = None,
     icon: Optional[str] = None,
     query_string: Optional[str] = None,
-    **query_kwargs: Dict[str, Any],
-) -> Dict[str, str]:
+    **query_kwargs: dict[str, Any],
+) -> dict[str, str]:
     """Render a standard button link."""
     query_string = query_string or ""
     query_string += "&".join([f"{key}={value}" for key, value in query_kwargs.items()])
@@ -72,7 +72,7 @@ def link_create(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard button link."""
     return _link(
         viewname,
@@ -92,7 +92,7 @@ def link_cancel(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard button link."""
     return _link(
         viewname,
@@ -112,7 +112,7 @@ def link_edit(
     size: str = "sm",
     classes: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard button link."""
     return _link(
         viewname,
@@ -133,7 +133,7 @@ def link_delete(
     classes: Optional[str] = None,
     icon: Optional[str] = None,
     attrs: Optional[str] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Render a standard delete button link."""
     return _link(
         viewname,

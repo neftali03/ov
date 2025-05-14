@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, List, Union
+from typing import Union
 
 from django import template
 from django.apps import apps
@@ -16,7 +16,7 @@ class BreadCrumb:
 
 
 @register.inclusion_tag("common/_breadcrumb.html", takes_context=True)
-def breadcrumb(context) -> Dict[str, Union[List[BreadCrumb], str]]:
+def breadcrumb(context) -> dict[str, Union[list[BreadCrumb], str]]:
     """
     Render the breadcrumb component.
 
@@ -38,12 +38,12 @@ def breadcrumb(context) -> Dict[str, Union[List[BreadCrumb], str]]:
 
 
 @register.inclusion_tag("common/_page_subtitle.html")
-def subtitle(content: str) -> Dict[str, str]:
+def subtitle(content: str) -> dict[str, str]:
     """Render a page subtitle."""
     return {"subtitle": content}
 
 
 @register.inclusion_tag("common/icons/_icon.html")
-def icon(name: str) -> Dict[str, str]:
+def icon(name: str) -> dict[str, str]:
     """Render an icon."""
     return {"icon_path": f"common/icons/_{name}.svg"}

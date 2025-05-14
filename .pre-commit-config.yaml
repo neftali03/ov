@@ -1,7 +1,7 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 default_language_version:
-  python: python3.8.20
+  python: python3.9
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -36,42 +36,46 @@ repos:
       - id: check-merge-conflict
       - id: check-docstring-first
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.9.0
+    rev: v3.19.1
     hooks:
       - id: pyupgrade
         args:
-          - --py38-plus
+          - --py39-plus
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: 1.23.1
+    hooks:
+      - id: django-upgrade
+        args:
+          - --target-version=5.1
   - repo: https://github.com/psf/black
-    rev: 22.3.0
+    rev: 25.1.0
     hooks:
       - id: black
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 6.0.1
     hooks:
       - id: isort
         name: isort (python)
-        args:
-          - --profile
-          - black
-        language_version: python3.8
   - repo: https://github.com/pycqa/flake8
     rev: 7.1.2
     hooks:
       - id: flake8
         additional_dependencies:
           - flake8-bugbear==24.12.12
-          - flake8-comprehensions==3.15.0
+          - flake8-no-pep420==2.8.0
+          - flake8-comprehensions==3.16.0
           - flake8-docstrings==1.7.0
           - flake8-print==5.0.0
           - flake8-breakpoint==1.1.0
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.14.1
+    rev: v1.15.0
     hooks:
       - id: mypy
         args:
           - --config-file=mypy.ini
         additional_dependencies:
-          - django-stubs==4.2.7
+          - mypy==1.15.0  # Make sure this matches the version in the pre-commit hook
+          - django-stubs==4.2.7  # Pin to a specific version that works with mypy 1.15.0
           - djangorestframework-stubs==3.14.5
           - celery
           - django-celery-beat
@@ -80,9 +84,11 @@ repos:
           - django-import-export
           - django-linear-migrations
           - django-phonenumber-field
+          #- django-stubs
           - django-widget-tweaks
           - django_htmx
           - djangorestframework
+          #- djangorestframework-stubs
           - drf-spectacular
           - drf-spectacular-sidecar
           - num2words

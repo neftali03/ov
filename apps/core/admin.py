@@ -51,12 +51,7 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": (
-                    "username",
-                    "password1",
-                    "password2",
-                    "email",
-                ),
+                "fields": ("username", "password1", "password2", "email"),
             },
         ),
     )
@@ -140,9 +135,9 @@ class UserAdmin(BaseUserAdmin):
         """Send an email with the temporary password."""
         subject = "OV | Contraseña temporal"
         message = (
-            f"Hola {instance.get_full_name()}, \n\n"
+            f"Hola {instance.username()}, \n\n"
             f"Le informamos que su contraseña ha sido reiniciada. \n"
-            f"Puede acceder con su usuario ({instance.username}) "
+            f"Puede acceder con su usuario: {instance.username} "
             f"y la siguiente contraseña temporal: \n{new_password}\n\n"
             "Cualquier duda o consulta, por favor contacte al Administrador. \n\n"
             "Saludos, \nOV"
