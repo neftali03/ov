@@ -53,7 +53,7 @@ class User(AbstractUser):
     def save(self, user_id=None, *args, **kwargs):
         """Extend to include extra functionality."""
         if self.pk is None:
-            self.created_by = user_id
+            self.created_by_id = user_id
         self.updated_by_id = user_id
 
         super().save(*args, **kwargs)

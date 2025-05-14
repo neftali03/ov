@@ -147,6 +147,15 @@ if logging_root := env["logging"]["logging_root"]:
 else:
     LOGGING_ROOT = BASE_DIR / "logs"
 
+# EMAIL
+EMAIL_HOST = env["email"]["host"]
+EMAIL_PORT = env["email"]["port"]
+EMAIL_HOST_USER = env["email"]["user"]
+EMAIL_HOST_PASSWORD = env["email"]["password"]
+EMAIL_SUBJECT_PREFIX = "[OV] "
+DEFAULT_FROM_EMAIL = env["email"]["from"]
+SERVER_EMAIL = env["email"]["from"]
+
 # OTHERS
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
