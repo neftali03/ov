@@ -38,7 +38,6 @@ SECRET_KEY = env["core"]["secret_key"]
 # MODELS
 
 INSTALLED_APPS = [
-    "apps.core",
     "widget_tweaks",
     "django_htmx",
     "django_linear_migrations",
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     "drf_spectacular_sidecar",
     "rest_framework.authtoken",
     "import_export",
-    "django.forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -55,6 +53,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
+    "apps.core",
+    "django.forms",
 ]
 
 # HTTP
@@ -94,7 +94,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
                 # "common.context_processors.sidebar",
-                # "common.context_processors.custom_data",
+                "common.context_processors.custom_data",
             ],
         },
     },
@@ -206,6 +206,8 @@ if DEBUG:
 # ----------------------------------------------------------------------
 # 4. PROJECT SETTINGS
 # ----------------------------------------------------------------------
+
+API_URL = "/api/"
 
 BOT_USERNAME = "ov"
 

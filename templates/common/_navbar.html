@@ -13,7 +13,7 @@
         <i class="bi bi-list"></i>
       </button>
       <a class="navbar-brand ms-2 {% if DEBUG %} text-danger{% else %}text-white{% endif %}" href="{% url 'core:index' %}">
-        Minerva ERP
+        OV
       </a>
     </div>
     {% breadcrumb %}
@@ -26,10 +26,6 @@
               data-bs-toggle="dropdown"
               aria-expanded="false">{{ user }}</button>
       <ul class="dropdown-menu dropdown-menu-end">
-        {% if perms.core.list_attachment %}
-          <li><a href="{% url "core:user:list_attachment" %}" class="dropdown-item">Descargas</a></li>
-        {% endif %}
-        <li><hr class="dropdown-divider"></li>
         <li>
           <form action="{% url 'core:auth:logout' %}" method="post">
             {% csrf_token %}

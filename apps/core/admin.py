@@ -12,7 +12,7 @@ from apps.core.models import RequestLog
 from common import functions as fn
 
 admin.site.site_title = "Admin"
-admin.site.site_header = "OV ERP Administration"
+admin.site.site_header = "OV Administration"
 admin.site.index_title = "Orientación vocacional"
 
 User = get_user_model()
@@ -24,7 +24,6 @@ class UserChangeForm(_UserChangeForm):
     class Meta:  # noqa: D106
         model = User
         fields = "__all__"
-        widgets = {"companies": forms.CheckboxSelectMultiple}
 
 
 @admin.register(User)
@@ -139,14 +138,14 @@ class UserAdmin(BaseUserAdmin):
     # noinspection PyMethodMayBeStatic
     def send_tmp_password_email(self, request, instance, new_password):
         """Send an email with the temporary password."""
-        subject = "Minerva ERP | Contraseña temporal"
+        subject = "OV | Contraseña temporal"
         message = (
             f"Hola {instance.get_full_name()}, \n\n"
             f"Le informamos que su contraseña ha sido reiniciada. \n"
             f"Puede acceder con su usuario ({instance.username}) "
             f"y la siguiente contraseña temporal: \n{new_password}\n\n"
             "Cualquier duda o consulta, por favor contacte al Administrador. \n\n"
-            "Saludos, \nMinerva ERP"
+            "Saludos, \nOV"
         )
         try:
             send_mail(

@@ -16,7 +16,7 @@ class _RequestLogBase(_Model):
     response_code = fields.PositiveSmallIntegerField()
     execution_time_ms = fields.IntegerField()
     user = fields.ForeignKey(USER_MODEL, null=True)  # type: ignore
-    created_at = fields.DateTimeField(db_default=TransactionNow())
+    created_at = fields.DateTimeField(default=TransactionNow())
 
     class Meta:  # noqa: D106
         abstract = True
@@ -62,7 +62,7 @@ class _ActionLogBase(_Model):
     model_id = fields.PositiveBigIntegerField()
     old_data = fields.JSONField(null=True)
     new_data = fields.JSONField(null=True)
-    created_at = fields.DateTimeField(db_default=TransactionNow())
+    created_at = fields.DateTimeField(default=TransactionNow())
 
     class Meta:  # noqa: D106
         abstract = True

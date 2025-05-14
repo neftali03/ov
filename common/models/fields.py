@@ -135,7 +135,6 @@ class BooleanField(models.BooleanField):
         **kwargs,
     ):
         """Extend to customize class."""
-        kwargs.pop("db_default", None)
         super().__init__(*args, **kwargs)
         self.audit_trail = audit_trail
         self.audit_callback = audit_callback
@@ -165,7 +164,6 @@ class DateTimeField(models.DateTimeField):
         **kwargs,
     ):
         """Extend to customize class."""
-        kwargs.pop("db_default", None)
         super().__init__(*args, **kwargs)
         self.audit_trail = audit_trail
         self.audit_callback = audit_callback

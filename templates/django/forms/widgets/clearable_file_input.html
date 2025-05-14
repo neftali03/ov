@@ -1,0 +1,11 @@
+{% load i18n %}
+{% language "es" %}
+  {% if widget.is_initial %}
+    <br><p class="mb-1"><a href="{{ widget.value.url }}" target="_blank">Ver archivo actual</a></p>
+    {% if not widget.required %}
+      <br><input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+      <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+    {% endif %}
+  {% endif %}
+{% endlanguage %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" with base_classes="form-control" %}>

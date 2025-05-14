@@ -12,15 +12,13 @@ class User(AbstractUser):
 
     is_human = BooleanField(
         verbose_name="Is the user human?",
-        db_default=True,
         default=True,
     )
     is_management = BooleanField(
         verbose_name="Is the user on the top management?",
-        db_default=False,
         default=False,
     )
-    tmp_password = BooleanField(db_default=True, default=True)
+    tmp_password = BooleanField(default=True)
     previous_password = ArrayField(
         _models.CharField(max_length=128),
         size=settings.PASSWORD_HISTORY,
@@ -29,7 +27,7 @@ class User(AbstractUser):
     )
     created_at = DateTimeField(
         verbose_name="Creado",
-        db_default=TransactionNow(),
+        default=TransactionNow(),
     )
     created_by = ForeignKey(  # type: ignore
         "self",
@@ -41,7 +39,7 @@ class User(AbstractUser):
     )
     updated_at = DateTimeField(
         verbose_name="Actualizado",
-        db_default=TransactionNow(),
+        default=TransactionNow(),
     )
     updated_by = ForeignKey(  # type: ignore
         "self",

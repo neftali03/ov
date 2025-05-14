@@ -5,10 +5,6 @@ from django.forms import widgets
 EMAIL_WIDGET_ATTRS = {"type": "email", "dx-case": "lower", "pattern": ".+\\.[a-z]{2,}$"}
 
 
-class PasswordInput(widgets.PasswordInput):
-    """Custom `Password` widget."""
-
-
 class TextInput(widgets.TextInput):
     """Custom `TextInput` widget."""
 
@@ -34,3 +30,7 @@ class TextInput(widgets.TextInput):
         if email:
             attrs.update(EMAIL_WIDGET_ATTRS)
         super().__init__(attrs=attrs)
+
+
+class PasswordInput(widgets.PasswordInput):
+    """Custom `Password` widget."""

@@ -8,6 +8,9 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql';
 
+DROP FUNCTION IF EXISTS django.set_updated_at();
+ALTER FUNCTION django.set_updated_at() OWNER TO neftali;
+
 -- Prevent changes on the `created_at` column.
 CREATE OR REPLACE FUNCTION django.lock_created_at()
   RETURNS TRIGGER AS
@@ -19,6 +22,8 @@ BEGIN
   RETURN NEW;
 END;
 $$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS django.lock_created_at();
 
 -- Return the difference from two JSONB objects as a JSONB object.
 -- Only left values are returned.

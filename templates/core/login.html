@@ -3,13 +3,17 @@
 
 {% block login %}
   <div class="mt-5 d-flex flex-column justify-content-center align-items-center">
-    <h4 class="fw-bold text-center text-primary pb-2">Orientación vocacional</h4>
+    <h4 class="fw-bold text-center text-primary pb-2">Orientación Vocacional</h4>
     <form class="w-75" method="post" autocomplete="off">
       {% csrf_token %}
       <div class="d-flex flex-column justify-content-center">
         {% non_field_errors form %}
-        {{ form.username.as_field_group }}
-        {{ form.password.as_field_group }}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.username.errors }}
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        {{ form.password.errors }}
         <input type="hidden" name="next" value="{{ next }}">
         <div class="d-grid mt-2">
           <input type="submit" class="btn btn-primary" value="Ingresar">

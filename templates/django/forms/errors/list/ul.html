@@ -1,0 +1,10 @@
+{% load i18n %}
+{% if errors %}
+  {% language "es" %}
+    <div class="alert alert-danger py-2 px-3{% if error_class %} {{ error_class }}{% endif %}">
+      {% for error in errors %}
+        <p class="my-1">{% translate error|safe %}</p>{% if not forloop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endlanguage %}
+{% endif %}
