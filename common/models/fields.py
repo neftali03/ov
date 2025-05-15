@@ -1,12 +1,8 @@
 from datetime import datetime
 from typing import Any, Optional, Union
 
-from django.core.validators import (
-    MaxValueValidator,
-    MinLengthValidator,
-    MinValueValidator,
-    RegexValidator,
-)
+from django.core.validators import (MaxValueValidator, MinLengthValidator,
+                                    MinValueValidator, RegexValidator)
 from django.db import models
 from django.utils.timezone import get_default_timezone
 

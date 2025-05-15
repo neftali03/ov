@@ -1,0 +1,33 @@
+# Core
+django>=4.1,<4.2
+django-widget-tweaks>=1.5,<1.6
+djangorestframework>=3.15,<3.16
+pandas[performance,excel]>=2.0,<2.1
+django-htmx>=1.19,<1.20
+drf-spectacular>=0.28,<0.29
+drf-spectacular-sidecar>=2024.12,<2024.13
+pymemcache>=4.0,<4.1
+unidecode>=1.4,<1.5
+requests>=2.32,<2.33
+num2words>=0.5,<0.6
+xhtml2pdf>=0.2,<0.3
+qrcode==8.0
+django-import-export[xls,xlsx,yaml,ods]>=4.1,<4.2
+pydantic>=1.10,<1.11
+
+# Django tooling
+django-debug-toolbar>=4,<5
+django-linear-migrations>=2,<3
+pre-commit>=4,<5
+
+# Dev tools
+pip-lock>=2,<3
+rich>=13,<14
+ipython>=8,<9
+Faker>=33,<34
+black>=22,<23
+isort>=5,<6
+
+# RASA
+rasa==3.6.21
+rasa-sdk==3.6.2
