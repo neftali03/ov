@@ -33,6 +33,24 @@ def faq_view(request):
             "answer": "Si tienes algún problema, puedes escribir "
             "al administrador del test: 'neftalihrramos@gmail.com'.",
         },
+        {
+            "question": "¿Por qué una contraseña temporal?",
+            "answer": "Para garantizar la privacidad de los usuarios que "
+            "utilizan este sitio web.",
+        },
+        {
+            "question": "¿Adónde se me enviarán mis resultados?",
+            "answer": "Tus resultados serán enviados a tu correo electrónico.",
+        },
+        {
+            "question": "¿Debo pagar por utilizar este sitio web?",
+            "answer": "No, el uso de esta aplicación es totalmente gratuito.",
+        },
+        {
+            "question": "¿Las respuestas son de libre expresión?",
+            "answer": "No, el sitio web está programado para que "
+            "solo puedas contestar 'Sí' o 'No'.",
+        },
     ]
     return render(
         request,

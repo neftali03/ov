@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h3 class="display-6 fw-bold py-4">Preguntas Frecuentes</h3>
-  <p class="fs-6">
-    Bienvenido a la sección de preguntas frecuentes. Si no encuentras lo que buscas,
-    puedes escribirnos al correo [correo] y con gusto te atenderemos.
-  </p>
+  <div class="d-flex flex-column gap-1">
+    <h3 class="display-6 fw-bold mb-0">Preguntas Frecuentes</h3>
+    <p class="fs-6 mb-0">
+      Bienvenido a la sección de preguntas frecuentes. Si no encuentras lo que buscas,
+      puedes escribirnos al correo [correo] y con gusto te atenderemos.
+    </p>
+  </div>
 
   <div class="accordion accordion-flush py-5" id="accordionFlushExample">
     {% for faq in faqs %}

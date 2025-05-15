@@ -148,11 +148,13 @@ else:
     LOGGING_ROOT = BASE_DIR / "logs"
 
 # EMAIL
+EMAIL_BACKEND = env["email"]["backend"]
 EMAIL_HOST = env["email"]["host"]
 EMAIL_PORT = env["email"]["port"]
 EMAIL_HOST_USER = env["email"]["user"]
 EMAIL_HOST_PASSWORD = env["email"]["password"]
-EMAIL_SUBJECT_PREFIX = "[OV] "
+EMAIL_SUBJECT_PREFIX = "[OV]"
+EMAIL_USE_TLS = env["email"]["use_tls"]
 DEFAULT_FROM_EMAIL = env["email"]["from"]
 SERVER_EMAIL = env["email"]["from"]
 

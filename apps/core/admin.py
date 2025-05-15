@@ -39,8 +39,6 @@ class UserAdmin(BaseUserAdmin):
             {
                 "fields": (
                     "is_human",
-                    "is_api",
-                    "is_store",
                     "is_management",
                 )
             },
@@ -133,14 +131,20 @@ class UserAdmin(BaseUserAdmin):
     # noinspection PyMethodMayBeStatic
     def send_tmp_password_email(self, request, instance, new_password):
         """Send an email with the temporary password."""
-        subject = "OV | Contraseña temporal"
+        subject = "OV | Credenciales"
         message = (
-            f"Hola {instance.username()}, \n\n"
-            f"Le informamos que su contraseña ha sido reiniciada. \n"
-            f"Puede acceder con su usuario: {instance.username} "
-            f"y la siguiente contraseña temporal: \n{new_password}\n\n"
-            "Cualquier duda o consulta, por favor contacte al Administrador. \n\n"
-            "Saludos, \nOV"
+            f"Hola {instance.username},\n\n"
+            f"Te comparto tus nuevos datos para que puedas acceder a "
+            f"nuestro sitio de orientación vocacional.\n\n"
+            f"Al iniciar sesión, el sistema te pedirá que cambies la contraseña, "
+            f"ya que la que tienes actualmente es temporal. "
+            f"Por favor, asegúrate de establecer una contraseña que recuerdes.\n\n\n"
+            f"~~~~ Datos de acceso ~~~~\n\n"
+            f"Usuario: {instance.username}\n"
+            f"Contraseña temporal: {new_password}\n\n"
+            f"Ante cualquier duda o consulta, no dudes en "
+            f"contactar al administrador.\n\n"
+            "Saludos, \n\nOV"
         )
         try:
             send_mail(
