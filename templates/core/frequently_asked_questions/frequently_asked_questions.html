@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3 class="display-6 fw-bold py-4">Preguntas Frecuentes</h3>
+  <p class="fs-6">
+    Bienvenido a la sección de preguntas frecuentes. Si no encuentras lo que buscas,
+    puedes escribirnos al correo [correo] y con gusto te atenderemos.
+  </p>
+
+  <div class="accordion accordion-flush py-5" id="accordionFlushExample">
+    {% for faq in faqs %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-heading{{ forloop.counter }}">
+          <button class="accordion-button collapsed fw-bold" type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapse{{ forloop.counter }}"
+                  aria-expanded="false"
+                  aria-controls="flush-collapse{{ forloop.counter }}">
+            {{ faq.question }}
+          </button>
+        </h2>
+        <div id="flush-collapse{{ forloop.counter }}"
+             class="accordion-collapse collapse"
+             aria-labelledby="flush-heading{{ forloop.counter }}"
+             data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            {{ faq.answer }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

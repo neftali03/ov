@@ -3,9 +3,9 @@
     {% for menu in menus %}
       {% if menu.allowed %}
         <div class="accordion-item {% if forloop.last %} border-bottom{% endif %}">
-          <div class="accordion-header ">
+          <div class="accordion-header">
             <button
-              class="accordion-button py-2{% if not menu.is_active %} collapsed{% endif %}"
+              class="accordion-button py-2{% if not menu.is_active %} collapsed {% endif %}"
               type="button" data-bs-toggle="collapse"
               data-bs-target="#collapse{{ forloop.counter }}"
               aria-expanded="{% if menu.is_active %}true{% else %}false{% endif %}"
@@ -13,14 +13,14 @@
           </div>
           <div id="collapse{{ forloop.counter }}"
                data-bs-parent="sidebar-nav"
-               class="accordion-collapse collapse{% if menu.is_active %} show{% endif %}">
+               class="accordion-collapse collapse{% if menu.is_active %} show {% endif %}">
             <div class="accordion-body bg-body py-0 ps-3">
               <ul class="list-group list-group-flush">
                 {% for submenu in menu.submenus %}
                   {% if submenu.allowed %}
                     <li class="list-group-item border-0">
                       <a href="{{ submenu.url }}"
-                         class="{% if submenu.is_active %} fw-bold text-primary-emphasis{% else %} text-secondary {% endif %} text-decoration-none ">
+                         class="{% if submenu.is_active %} fw-bold text-primary-emphasis {% else %} text-secondary-emphasis {% endif %} text-decoration-none ">
                         {{ submenu.title }}
                       </a>
                     </li>
